@@ -43,6 +43,8 @@
             {%  endfor %}
         </table>
     </div>
+    <div id="output_board">
+    </div>
 
 </div>
 
@@ -84,10 +86,15 @@
         // notify lv_dates changed
         root.config.lv_changed_callback = function () {
             var list = get_sorted_lvdates(root.config.re_dict);
+            var output = $('#output_board');
+            output.empty();
 
             for (var index = 0; index < list.length; index++) {
                 var line = list[index];
-                console.log('id:' + line.id + ' type:' + line.value);
+                var str_line = 'id:' + line.id + ' type:' + line.value ;
+
+                $('<span>' + str_line + '</span><br>').appendTo(output);
+
             }
         };
 
