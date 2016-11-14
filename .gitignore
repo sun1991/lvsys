@@ -2,6 +2,7 @@
 *.suo
 *.user
 obj/
+.ptvs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
