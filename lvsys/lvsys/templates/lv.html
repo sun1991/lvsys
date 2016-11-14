@@ -32,7 +32,7 @@
                 <td>
                     <div id="{{'m{0}d{1}'.format(mm+1, dd+1)}}">
                         <label class="checkbox" v-bind:title="to_string">
-                            <input type="checkbox" v-model="check_state" v-on:click="user_click" />
+                            <input type="checkbox" v-model="check_state" v-on:click="user_click" v-bind:disabled="is_holiday" />
                             <span v-bind:style="{background: to_color}"></span>
 
                         </label>

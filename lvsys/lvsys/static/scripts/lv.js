@@ -24,6 +24,9 @@ function get_vm(index, the_date, config){
                     return this.cf.lv_to_color(this.lv);                    
                 }
             },
+            is_holiday: function(){
+                return this.hld == 1 ? true : false;
+            },
             check_state:{
                 get: function () {
                     if (this.hld) {
