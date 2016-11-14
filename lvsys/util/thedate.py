@@ -17,8 +17,14 @@ def get_alldays(year):
 def get_lvdates(year):
     lvdate_list = []
     for thedate in get_alldays(year):
-        # only consider weekend for now
-        is_holiday = 1 if thedate.weekday() in [5, 6] else 0
+        is_holiday = 0
+        if thedate.weekday() in [5, 6]:
+            # weekend
+            is_holiday = 1
+        elif thedate.month == 10 and thedate.day in [1,2,3,4,5,6,7]:
+            # holiday
+            is_holiday = 1
+
         lvdate = LvDate(thedate.year, thedate.month, thedate.day, 0, is_holiday, 0)
         
         if not lvdate.is_holiday:

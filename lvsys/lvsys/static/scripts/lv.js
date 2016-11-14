@@ -37,7 +37,6 @@ function get_vm(index, the_date, config){
                 },
                 set: function (newValue) {
                     // holiday will always has lv = 0
-                    //this.lv = newValue ? this.cf.lv : 0;
                     if (newValue) {
                         this.lv = this.cf.lv;
                         this.cf.re_dict[this.id] = this.cf.lv;
