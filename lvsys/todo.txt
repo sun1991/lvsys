@@ -3,6 +3,7 @@ configurable lv_type and its color (DONE)
 add customize holidays
 output date and lv_type when checked
 vm should contains a key (for example, sequence) for sort purpose
+display approval state (approved, pending)
 
 
 
@@ -25,7 +26,7 @@ leave
 - approver_id, approval_date, approval_comment
 
 leavedetail
-- id, date, lv_type
+- id, date, lvtype_id
 
 approval_translate
 - id, hash, leave_id # approval link contains hash, which traslate into leave_id here

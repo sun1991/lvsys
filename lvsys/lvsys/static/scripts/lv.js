@@ -8,13 +8,13 @@ function get_vm(index, the_date, config){
             dd: the_date.day,
             lv: the_date.lv_type,
             hld: the_date.is_holiday,
-            his: the_date.is_history
+            apr: the_date.is_approved
         },
         computed:{
             to_string: function(){
                 return 'id:' + this.id
                     + ' mm:' + this.mm + ' dd:' + this.dd
-                    + ' lv:' + this.lv + ' his:' + this.his
+                    + ' lv:' + this.lv + ' apr:' + this.apr
                     + ' hld:' + this.hld;
             },
             to_color: function () {
@@ -24,8 +24,15 @@ function get_vm(index, the_date, config){
                     return this.cf.lv_to_color(this.lv);                    
                 }
             },
-            is_holiday: function(){
-                return this.hld == 1 ? true : false;
+            is_disabled: function(){
+                if (this.hld === 1 || this.apr === 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            is_approved: function(){
+                return this.apr === 1 ? true : false;
             },
             check_state:{
                 get: function () {

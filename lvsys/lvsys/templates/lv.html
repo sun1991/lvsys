@@ -32,8 +32,8 @@
                 <td>
                     <div id="{{'m{0}d{1}'.format(mm+1, dd+1)}}">
                         <label class="checkbox" v-bind:title="to_string">
-                            <input type="checkbox" v-model="check_state" v-on:click="user_click" v-bind:disabled="is_holiday" />
-                            <span v-bind:style="{background: to_color}"></span>
+                            <input type="checkbox" v-model="check_state" v-on:click="user_click" v-bind:disabled="is_disabled" />
+                            <span v-bind:style="{background: to_color}">{%raw%} {{ is_approved ? "^" : "" }} {%endraw%}</span>
 
                         </label>
                     </div>
@@ -111,6 +111,7 @@
                 var color = root.config.lv_to_color(lvtype);
                 self.css('background', color);
             });
+
         });
 
         // test output
