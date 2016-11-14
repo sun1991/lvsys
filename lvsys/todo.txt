@@ -1,0 +1,5 @@
+distinguish weekend and holidays
+configurable lv_type and its color
+add customize holidays
+output date and lv_type when checked
+vm should contains a key (for example, sequence) for sort purpose

@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Leave System</h2>
+
+<div>
+    <div id="lvtype_board">
+        <ul class="list-inline">
+            {% for lv in lv_types %}
+            <li>
+                <label lvtype="{{lv.value}}">
+                    <input type="radio" name="lv_type" value="{{lv.value}}" v-model.number="cf.lv" />
+                    {{lv.name}}
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="dates_board">
+        <table cellpadding="0" cellspacing="0" id="lv_table">
+            <tr>
+                <th></th>
+                {% for dd in range(31) %}
+                <th>{{ dd+1 }}</th>
+                {% endfor %}
+            </tr>
+            {% for mm in range(12) %}
+            <tr>
+                <td>{{ mm+1 }}</td>
+                {% for dd in range(31) %}
+                <td>
+                    <div id="{{'m{0}d{1}'.format(mm+1, dd+1)}}">
+                        <label class="checkbox" v-bind:title="to_string">
+                            <input type="checkbox" v-model="check_state" v-on:click="user_click" />
+                            <span v-bind:style="{background: to_color}"></span>
+
+                        </label>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {%  endfor %}
+        </table>
+    </div>
+
+</div>
+
+<div>
+    <button id="btnTest">Test</button>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/scripts/lv.js"></script>
+<script type="text/javascript">
+
+    function get_sorted_lvdates(dict) {
+        var list = [];
+        for (var key in dict) {
+            if (dict.hasOwnProperty(key)) {
+                var value = dict[key];
+                if (value !== null) {
+                    list.push({ 'id': key, 'value': value });
+                }
+            }
+        }
+
+        list.sort(function (a, b) { return a.id - b.id; });
+        return list;
+    }
+
+    var root = null;
+    $(function () {
+        //alert('hello jQuery');
+        var str_dates = '{{all_lvdates_json|safe}}';
+        var str_lvtypes = '{{lv_types_json|safe}}';
+
+        var all_lvdates = JSON.parse(str_dates);
+        var all_lvtypes = JSON.parse(str_lvtypes);
+
+        root = prepare_binding(all_lvdates);
+        // notify lv_dates changed
+        root.config.lv_changed_callback = function () {
+            var list = get_sorted_lvdates(root.config.re_dict);
+
+            for (var index = 0; index < list.length; index++) {
+                var line = list[index];
+                console.log('id:' + line.id + ' type:' + line.value);
+            }
+        };
+
+        // hide all none date checkbox
+        Vue.nextTick(function () {
+            var all_empty_dates = $('div[id^=m]>label:not([title])');
+            //console.log('all_empty_dates: ' + all_empty_dates.length);
+            all_empty_dates.hide();
+
+            // set lv_type radio color
+            $('#lvtype_board label[lvtype]').each(function () {
+                var self = $(this);
+                var lvtype = parseInt(self.attr('lvtype'));
+                var color = root.config.lv_to_color(lvtype);
+                self.css('background', color);
+            });
+        });
+
+        // test output
+        $('#btnTest').on('click', function () {
+            for (var index = 0; index < root.vm_list.length; index++) {
+                var the_date = root.vm_list[index];
+                if (the_date.his === 0 && the_date.lv > 0) {
+                    console.log('new lv found: ' + the_date.to_string);
+                } else if (the_date.his === 1) {
+                    console.log('old lv found: ' + the_date.to_string);
+                }
+            }
+        });
+
+
+    });
+</script>
+
+{% endblock %}
