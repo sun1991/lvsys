@@ -4,14 +4,14 @@ add customize holidays
 output date and lv_type when checked
 vm should contains a key (for example, sequence) for sort purpose
 display approval state (approved, pending)
-
+add year support
 
 
 DB:
 user
 - id, username, fullname, email, group_id, approver_id
 
-group:
+lvgroup:
 - id, lvtype_id, days
 
 lvtype
@@ -21,12 +21,12 @@ holiday
 - id, date, description
 
 leave
-- id, user_id, leavedetail_id, lv_comment,
+- id, user_id, lv_comment,
 - flag: pending, approved,
 - approver_id, approval_date, approval_comment
 
-leavedetail
-- id, date, lvtype_id
+lvdetail
+- id, leave_id, date, lvtype_id
 
 approval_translate
 - id, hash, leave_id # approval link contains hash, which traslate into leave_id here

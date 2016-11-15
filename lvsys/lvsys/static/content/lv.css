@@ -27,3 +27,6 @@ label.checkbox :checked + span {
     
 }
 
+[v-cloak] {
+    display: none;
+}
