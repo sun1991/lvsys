@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lvsys\" />
+    <Folder Include="lvsys\db\" />
     <Folder Include="lvsys\static\" />
     <Folder Include="lvsys\static\content\" />
     <Folder Include="lvsys\static\fonts\" />
@@ -56,6 +57,7 @@
     <Folder Include="util\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lvsys\db\lv.db" />
     <Content Include="lvsys\static\content\lv.css" />
     <Content Include="lvsys\static\scripts\lv.js" />
     <Content Include="lvsys\static\scripts\vue.js" />

@@ -28,5 +28,5 @@ leave
 lvdetail
 - id, leave_id, date, lvtype_id
 
-approval_translate
+approval_hash
 - id, hash, leave_id # approval link contains hash, which traslate into leave_id here
