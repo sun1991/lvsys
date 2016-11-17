@@ -21,8 +21,23 @@ function get_vm(index, the_date, config){
                 if (this.hld) {
                     return '#777'; // holiday
                 } else {
-                    return this.cf.lv_to_color(this.lv);                    
+                    return this.cf.lv_to_color(this.lv);
                 }
+            },
+            style_lv: function () {
+                var background = null;
+                if (this.hld) {
+                    background = '#777'; // holiday
+                } else {
+                    background = this.cf.lv_to_color(this.lv);
+                }
+
+                var cur = this.is_disabled ? "no-drop" : "default";
+
+                return {
+                    background: background,
+                    cursor: cur
+                };
             },
             is_disabled: function(){
                 if (this.hld === 1 || this.apr === 1) {
