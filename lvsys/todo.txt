@@ -5,6 +5,7 @@ output date and lv_type when checked
 vm should contains a key (for example, sequence) for sort purpose
 display approval state (approved, pending)
 add year support
+think about use component to represent LV Date
 
 
 DB:
