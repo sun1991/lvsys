@@ -32,7 +32,7 @@ function get_vm(index, the_date, config){
                     background = this.cf.lv_to_color(this.lv);
                 }
 
-                var cur = this.is_disabled ? "no-drop" : "default";
+                var cur = this.is_disabled ? "no-drop" : "pointer";
 
                 return {
                     background: background,
