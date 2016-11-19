@@ -30,6 +30,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="lvsys\db\lvdb.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="lvsys\db\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="lvsys\__init__.py" />
     <Compile Include="lvsys\views.py" />

@@ -9,7 +9,7 @@ from lvsys import app
 import util.lvdate
 import util.thedate
 import util.lvtype
-
+import lvsys.db.lvdb as db
 
 
 @app.route('/')
@@ -53,3 +53,13 @@ def lv():
         lv_types_json = json.dumps(lv_types, cls=util.lvtype.LvTypeEncoder),
         all_lvdates_json=json.dumps(all_lvdates, cls=util.lvdate.LvDateEncoder)
         )
+
+@app.route('/test')
+def test():
+    import sqlite3
+    import sys
+    conn = sqlite3.connect('lvsys/db/lv.db')
+    allusers = db.test_get_user(conn)
+    print(allusers)
+
+    return 'test'
