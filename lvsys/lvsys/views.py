@@ -56,10 +56,7 @@ def lv():
 
 @app.route('/test')
 def test():
-    import sqlite3
-    import sys
-    conn = sqlite3.connect('lvsys/db/lv.db')
+    conn = db.get_conn()
     allusers = db.test_get_user(conn)
-    print(allusers)
 
-    return 'test'
+    return repr(allusers)
