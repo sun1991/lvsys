@@ -34,6 +34,10 @@ def get_lvdates(year):
                 lvdate.lv_type = 1
             elif chance > 95:
                 lvdate.lv_type = 2
+            elif chance > 93:
+                lvdate.lv_type = 3
+            elif chance > 91:
+                lvdate.lv_type = 4
 
             if lvdate.lv_type > 0 and random.randint(1, 100) > 10:
                 lvdate.is_approved = 1
