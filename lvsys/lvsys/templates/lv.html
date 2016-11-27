@@ -82,7 +82,7 @@
         var all_lvdates = JSON.parse(str_dates);
         var all_lvtypes = JSON.parse(str_lvtypes);
 
-        root = prepare_binding(all_lvdates);
+        root = prepare_binding(all_lvdates, all_lvtypes);
         // notify lv_dates changed
         root.config.lv_changed_callback = function () {
             var list = get_sorted_lvdates(root.config.re_dict);

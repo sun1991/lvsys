@@ -89,14 +89,13 @@ function prepare_binding(lvdate_list, lvtype_list){
         lv: 1,
         re_dict: {},
         lv_to_color: function (lv_type) {
-            switch (lv_type) {
-                case 1:
-                    return '#6F6';
-                case 2:
-                    return '#F55';
-                default:
-                    return '#FFF';
+            for (var index = 0; index < lvtype_list.length; index++) {
+                var curr = lvtype_list[index];
+                if (curr.value == lv_type) {
+                    return curr.color;
+                }                
             }
+            return '#FFF';
         },
         lv_changed_callback: function(){}
         //_lv_changed: function () {

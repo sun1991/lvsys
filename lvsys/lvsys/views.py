@@ -45,8 +45,11 @@ def about():
 @app.route('/lv')
 def lv():
     """render lv page."""
+    conn = db.get_conn();
+
     all_lvdates = util.thedate.get_lvdates(2016)
-    lv_types = [util.lvtype.LvType('mandatory', 1), util.lvtype.LvType('company', 2)]
+    #lv_types = [util.lvtype.LvType('mandatory', 1), util.lvtype.LvType('company', 2)]
+    lv_types = [util.lvtype.LvType(row[2], row[1], row[3]) for row in db.get_all_lv(conn)]
     return render_template(
         'lv.html',
         lv_types = lv_types, # for template
